@@ -261,7 +261,7 @@ function populate_table_main(){
         table_main.fnAddData
         ([
           i+1,s[i][1],s[i][2],s[i][3],s[i][4],s[i][5],
-          '<button onclick="table_row_update(this.value)" value="'+s[i][0]+'" class="btn btn-xs btn-info"> EDIT </button>',
+          '<button onclick="table_row_update(this.value)" value="'+s[i][0]+'" class="btn btn-xs btn-success"> EDIT </button>',
           '<button onclick="table_row_delete(this.value)" value="'+s[i][0]+'" class="btn btn-xs btn-danger"> DELETE </button>',
         ],false); 
         table_main.fnDraw();
