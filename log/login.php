@@ -10,11 +10,11 @@ session_start();
     <title>Login</title>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="../plugins/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="../plugins/css/bootstrap.min.css">
 
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/stylesheetsad.css">
+	<link rel="stylesheet" href="../plugins/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/css/stylesheetsad.css">
     
 
 
@@ -26,10 +26,10 @@ session_start();
     <![endif]-->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="js/jquery-1.9.0.min.js"></script>
-    <script src="js/jquery-1.11.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-      <script src="js/jquery.js"></script>
+        <script src="../plugins/js/jquery-1.9.0.min.js"></script>
+    <script src="../plugins/js/jquery-1.11.1.min.js"></script>
+    <script src="../plugins/js/bootstrap.min.js"></script>
+      <script src="../plugins/js/jquery.js"></script>
    
 
   </head>
@@ -60,7 +60,7 @@ session_start();
 </html>
 
 <?php
-include("db.php");
+include("../database/dbsad.php");
 
 if(isset($_POST['btnlogin']))
 {
@@ -71,7 +71,7 @@ $check_user="select * from user_tbl where username='$user_name' AND password='$u
 $run=mysql_query($check_user);
 if(mysql_num_rows($run))
 {
-echo "<script>window.open('index.php','_self')</script>";
+echo "<script>window.open('../index.php','_self')</script>";
 $_SESSION['txtuser']=$user_name;
 $_SESSION['txtpw']=$user_pass;
 }
