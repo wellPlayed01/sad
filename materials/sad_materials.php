@@ -43,6 +43,8 @@ header("Location: login.php");
       <script type="text/javascript" charset="utf8" src="../plugins/datatables/jquery.dataTables.js"></script>
       <script> $(document).ready(function(){ $('#table_id').DataTable();});</script>
       <script> $('#table_id').DataTable( {select: true } );</script>
+      
+
       <script> var table = $('#table_id').DataTable();
 table.rows('.important').select();
       </script>
@@ -76,7 +78,7 @@ table.cell( {focused:true} ).data();</script>
     <?php
     if(isset($_POST['btncat']))
     {
-    header("Location: sad_category.php");
+    header("Location: index.php");
     }
     if(isset($_POST['btnvar']))
     {
@@ -107,35 +109,42 @@ table.cell( {focused:true} ).data();</script>
         <form method="post" onsubmit="return ivalidate()" ><!--form-->
 
 
-        <div id="cate_div">
+        <div class="row">
+          <div id="cate_div" class="col-sm-6 col-xs-12">
 
-          <p>Category:</p> 
-          <select class="form-control" id="cate" name="cate">
-            <?php              
-                include("../database/dbsad.php");
-             echo "<option value='none' selected >Select Category...</option>";
-             $content=mysql_query("select * from category_tbl");
-            $total=mysql_affected_rows();
-            for($x=0;$x<=$total-1;$x++)
-            {
-            ?>
-                <?php $row = mysql_fetch_array($content);
-                $cat=$row['Category'];
-             echo "<option>$cat</option>";
-            }?>
-          </select>
-
-
-        </div>
+              <p>Category:</p> 
+              <select class="form-control" id="cate" name="cate">
+                <?php              
+                    include("../database/dbsad.php");
+                 echo "<option value='none' selected >Select Category...</option>";
+                 $content=mysql_query("select * from category_tbl");
+                $total=mysql_affected_rows();
+                for($x=0;$x<=$total-1;$x++)
+                {
+                ?>
+                    <?php $row = mysql_fetch_array($content);
+                    $cat=$row['Category'];
+                 echo "<option>$cat</option>";
+                }?>
+              </select>
 
 
-        <div id="name_div">
+          </div>
 
-        <p>Brand name: </p> 
-                <input type="text" class="form-control" id="name" name="name" placeholder="Brand Name">
-        </div>
+          <div class="col-sm-6 col-xs-12">
+            <div id="name_div">
 
-        <div id="var_div"
+            <p>Brand name: </p> 
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Brand Name">
+            </div>            
+          </div>   
+                 
+        </div><!--ROW-->
+
+        <div class="row">
+        <div class="col-sm-6">
+          
+        <div id="var_div">
         
         <p>Variant: </p>
             <select class="form-control" id="var" name="var">
@@ -154,6 +163,8 @@ table.cell( {focused:true} ).data();</script>
                   </select>
         </div>
 
+        </div>
+          <div class="col-sm-6">
         <div id="pack_div"
 
         <p>Packaging: </p>
@@ -172,7 +183,12 @@ table.cell( {focused:true} ).data();</script>
          }?>
                 </select>
         </div>
+            
+          </div>
+        </div><!--row-->
 
+        <div class="row">
+          <div class="col-sm-6">
         <div id="uni_div">
 
       <p>Unit of Measurement: </p>
@@ -192,12 +208,18 @@ table.cell( {focused:true} ).data();</script>
               </select>
 
           </div>
+          </div>
+          <div class="col-sm-6">
 
           <div id="value_div">
 
           <p>Value of Unit: </p><input type="number" min="0.01" step="0.01" class="form-control" id="value" name="value" placeholder="Value of unit">
 
          </div>
+
+          </div>
+        </div>
+
 
 <input type="submit" class="btn btn-info" id="btnSave"  name="btnSave" style="margin-top:20px;margin-left:250px;" value="Save">
             </form>    
@@ -210,6 +232,12 @@ table.cell( {focused:true} ).data();</script>
     </div>
   </div> 
 </div>
+
+
+
+
+
+
     
 <?php
 if(isset($_POST['btnSave']))
@@ -239,7 +267,7 @@ include("database/dbsad.php");
 <div class="panel panel-default">
 <div class="panel-body">            
   
-    <table id="table_id" class="display">
+    <table id="table_id" class="display table-condensed table-hover table-stripe">
     <thead>
         <th>#</th>
         <th>Category</th>
@@ -274,13 +302,6 @@ include("database/dbsad.php");
 <td><?php echo "$value $unit"; ?></td>
 <td>
 <form method="post">
-<input type="hidden" name="id" value="<?php echo $id; ?>">
-<input type="hidden" name="category" value="<?php echo $category; ?>">
-<input type="hidden" name="name" value="<?php echo $name; ?>">
-<input type="hidden" name="variant" value="<?php echo $variant; ?>">
-<input type="hidden" name="packaging" value="<?php echo $packaging; ?>">
-<input type="hidden" name="unit" value="<?php echo $unit; ?>">
-<input type="hidden" name="value" value="<?php echo $value; ?>">
     <input type="submit" class="btn btn-success" name="btnEdit" value="Edit">
     <input type="submit" class="btn btn-danger" name="btnDelete" value="Delete">
 </form>
@@ -332,7 +353,7 @@ function ivalidate(){
   else
     $('#pack_div').removeClass('has-error');  
 
-if($('#uni').val()=='none'){
+  if($('#uni').val()=='none'){
     $('#uni_div').addClass('has-error');
     truth_value = false;
   }
@@ -351,8 +372,8 @@ if($('#uni').val()=='none'){
     $('#value_div').removeClass('has-error');  
 
   return truth_value;
-
 }
+
 
 
 </script>

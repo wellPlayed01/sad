@@ -1,4 +1,4 @@
-    <img src="../plugins/imgs/Salon360.jpg" alt="Cover" width="100%" height="250">
+    <a href="../index.php"><img src="../plugins/imgs/Salon360.jpg" alt="Cover" width="100%" height="250"></a>
         </div>
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
