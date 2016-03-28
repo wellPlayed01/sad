@@ -261,7 +261,7 @@ if (mysql_affected_rows() != 0)
 <?php
 }
 }
-include("database/dbsad.php");
+include("../database/dbsad.php");
 
 ?>
 <div class="panel panel-default">
