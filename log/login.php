@@ -71,7 +71,7 @@ $check_user="select * from user_tbl where username='$user_name' AND password='$u
 $run=mysql_query($check_user);
 if(mysql_num_rows($run))
 {
-echo "<script>window.open('Sad.php','_self')</script>";
+echo "<script>window.open('index.php','_self')</script>";
 $_SESSION['txtuser']=$user_name;
 $_SESSION['txtpw']=$user_pass;
 }
