@@ -15,12 +15,12 @@ header("Location: login.php");
     <title>Home</title>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="datatables/jquery.dataTables.css">
-      <link rel="stylesheet" type="text/css" href="datatables/jquery.dataTables.css">
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/stylesheetsad.css">
+    <link href="../plugins/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="../plugins/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/datatables/jquery.dataTables.css">
+      <link rel="stylesheet" type="text/css" href="../plugins/datatables/jquery.dataTables.css">
+	<link rel="stylesheet" href="../plugins/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/css/stylesheetsad.css">
     
 
 
@@ -32,13 +32,13 @@ header("Location: login.php");
     <![endif]-->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="js/jquery-1.9.0.min.js"></script>
-        <script src="js/jquery.min.js"></script>
-    <script src="js/jquery-1.11.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-      <script src="js/jquery.js"></script>
+        <script src="../plugins/js/jquery-1.9.0.min.js"></script>
+        <script src="../plugins/js/jquery.min.js"></script>
+    <script src="../plugins/js/jquery-1.11.1.min.js"></script>
+    <script src="../plugins/js/bootstrap.min.js"></script>
+      <script src="../plugins/js/jquery.js"></script>
  
-      <script type="text/javascript" charset="utf8" src="datatables/jquery.dataTables.js"></script>
+      <script type="text/javascript" charset="utf8" src="../plugins/datatables/jquery.dataTables.js"></script>
       <script> $(document).ready(function(){ $('#table_id').DataTable();});</script>
       <script> $('#table_id').DataTable( {select: true } );</script>
       <script> var table = $('#table_id').DataTable();
@@ -63,8 +63,10 @@ table.cell( {focused:true} ).data();</script>
     <ul class="nav navbar-nav">
         
         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Transactions <span class="caret"></span></a>             <ul class="dropdown-menu">
-      <li><a href="service_layout.php">Services</a></li>
-      <li><a href="purchase_layout.php">Purchase Order</a></li>
+      <li><a href="transactions/service_layout.php">Services</a></li>
+      <li><a href="transactions/purchase_layout.php">Purchase Order</a></li>
+      <li><a href="transactions/receive_layout.php">Receive Delivery</a></li>
+
           </ul>
         </li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Reports <span class="caret"></span></a>
@@ -80,16 +82,16 @@ table.cell( {focused:true} ).data();</script>
         </li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="sad_maintenance.php">Maintenance <span class="caret"></span></a>
           <ul class="dropdown-menu">
-      <li><a href="sad_materials.php">Materials</a></li>
-      <li><a href="sad_service.php">Services</a></li>
-      <li><a href="sad_promo.php">Seasonal Promo</a></li>
+      <li><a href="materials/sad_materials.php">Materials</a></li>
+      <li><a href="service/sad_service.php">Services</a></li>
+      <li><a href="promo/sad_promo.php">Seasonal Promo</a></li>
           </ul>
         </li>
     </ul>
   </div>
     </nav>
     
-    <h5 style="margin-left:1250px;"><a href="logout.php">Logout here!</a></h5>
+    <h5 style="margin-left:1250px;"><a href="log/logout.php">Logout here!</a></h5>
 
     <form method="post">
   <div class="btn-group" style="margin-left:475px;">
@@ -117,7 +119,7 @@ table.cell( {focused:true} ).data();</script>
     header("Location: sad_unit.php");
     }
 
-    ?>    <form method="post" action="variant_save.php">
+    ?>    <form method="post" action="packaging_save.php">
         <button type="submit" class="btn btn-info btn-lg" name="btnnew" style="align:center;margin-left:600px;margin-bottom:10px;">Add new record</button>
     </form>
 <div class="panel panel-default">
@@ -126,32 +128,32 @@ table.cell( {focused:true} ).data();</script>
     <table id="table_id" class="display">
     <thead>
         <th>#</th>
-        <th>Variant Name</th>
+        <th>Packaging</th>
         <th>Description</th>
         <th>Actions</th>
     </thead>
 <?php
- $content=mysql_query("select * from variant_tbl");
+ $content=mysql_query("select * from packaging_tbl");
   $total=mysql_affected_rows();
   for($x=0;$x<=$total-1;$x++)
   { 
  $no = $x + 1;
  $row=mysql_fetch_array($content);
  $id=$row['var_id'];
- $variant=$row['Variant'];
+ $pack=$row['packaging'];
  $desc=$row['Description'];
 ?>
         <tbody>
 <tr>
 <form method="post">
 <td><?php echo $no; ?></td>
-<td><?php echo $variant; ?></td>
+<td><?php echo $pack; ?></td>
 <td><?php echo $desc; ?></td>
         </form>
 <td>    <form method="post" action="variant_edit.php">
         <button type="submit" class="btn btn-success" name="btnEdit">Edit</button>
         <input type="hidden" name="hidid" value="<?php echo $id; ?>">
-        <input type="hidden" name="hidvar" value="<?php echo $variant; ?>">
+        <input type="hidden" name="hidpack" value="<?php echo $pack; ?>">
         <input type="hidden" name="hiddesc" value="<?php echo $desc; ?>">
     </form>
                </td>
