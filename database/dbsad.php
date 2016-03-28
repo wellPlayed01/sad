@@ -1,9 +1,9 @@
         <?php
 
-$conn = new PDO("mysql:host=localhost;dbname=saddb","root","starwars");
+$conn = new PDO("mysql:host=localhost;dbname=saddb","root");
 
 
-if($connect=@mysql_connect("localhost","root","starwars"))
+if($connect=@mysql_connect("localhost","root"))
 echo "<br>";
 else
  die ("<br/>".@mysql_error());

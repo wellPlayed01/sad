@@ -1,1 +1,1 @@
-<?php $conn = new PDO("mysql:host=localhost;dbname=saddb","root","starwars"); ?>
+<?php $conn = new PDO("mysql:host=localhost;dbname=saddb","root"); ?>
