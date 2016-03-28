@@ -326,7 +326,21 @@ function save(mode){
       //ajax end  
   }
   else{ // will UPDATE
-
+      //ajax now
+      $.ajax ({
+        type: "POST",
+        url: "update.php",
+        data: dataString+'&id='+$('#btnSave').val(),
+        dataType: 'json',      
+        cache: false,
+        success: function(s){    
+          populate_table_main();
+          reset();          
+          $('#myModal').modal('hide');
+          alert('SUCCESS: Update');
+        }  
+      }); 
+      //ajax end  
   }
 
 
