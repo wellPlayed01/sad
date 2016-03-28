@@ -14,43 +14,21 @@ header("Location: login.php");
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Home</title>
 
-    <!-- Bootstrap -->
-    <link href="../plugins/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="../plugins/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../plugins/datatables/jquery.dataTables.css">
-      <link rel="stylesheet" type="text/css" href="../plugins/datatables/jquery.dataTables.css">
-	<link rel="stylesheet" href="../plugins/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../plugins/css/stylesheetsad.css">
-    
-
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="bootstrap/html5shiv.js"></script>
-      <script src="bootstrap/respond.min.js"></script>
-    <![endif]-->
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="../plugins/js/jquery-1.9.0.min.js"></script>
-        <script src="../plugins/js/jquery.min.js"></script>
-    <script src="../plugins/js/jquery-1.11.1.min.js"></script>
-    <script src="../plugins/js/bootstrap.min.js"></script>
-      <script src="../plugins/js/jquery.js"></script>
 
 
 
-      <script type="text/javascript" charset="utf8" src="../plugins/datatables/jquery.dataTables.js"></script>
-      <script> $(document).ready(function(){ $('#table_id').DataTable();});</script>
-      <script> $('#table_id').DataTable( {select: true } );</script>
-      
 
-      <script> var table = $('#table_id').DataTable();
-table.rows('.important').select();
-      </script>
-      <script>var table = $('#table_id').DataTable();
-table.cell( {focused:true} ).data();</script>
-   
+    <!--Bootstrap CSS BELOW-->
+    <link href="../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />  
+    <link href="../plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />     
+    <!--JQUERY BELOW-->
+    <script src="../plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!--Datatables BELOW-->
+    <script src="../plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
+    <!--Datatables Bootsrap CSS BELOW -->
+    <script src="../plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>   
+    <!--Datatables Javascript BELLOW -->
+    <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
 
   </head>
     <style>
@@ -75,6 +53,7 @@ table.cell( {focused:true} ).data();</script>
     <input type="submit" class="btn btn-warning" name="btnunit" value="Unit of measurement">
   </div>    
       </form>
+
     <?php
     if(isset($_POST['btncat']))
     {
@@ -99,14 +78,13 @@ table.cell( {focused:true} ).data();</script>
     <div class="modal-dialog">
     
       <!-- Modal content-->
-      <div class="modal-content">
+      <div class="modal-content" >
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Add New Materials</h4>
         </div>
         <div class="modal-body">
 
-        <form method="post" onsubmit="return ivalidate()" ><!--form-->
 
 
         <div class="row">
@@ -221,8 +199,7 @@ table.cell( {focused:true} ).data();</script>
         </div>
 
 
-<input type="submit" class="btn btn-info" id="btnSave"  name="btnSave" style="margin-top:20px;margin-left:250px;" value="Save">
-            </form>    
+<button class="btn btn-info btn-lg" onclick="save(this.value)" id="btnSave"  name="btnSave" style="margin-top:20px;margin-left:250px;" value="create"> SAVE </button>
           </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -238,36 +215,11 @@ table.cell( {focused:true} ).data();</script>
 
 
 
-    
-<?php
-if(isset($_POST['btnSave']))
-{
-include("dbsad.php");
-  $id = date('ymd-HisA');
-  $cat=($_POST['cate']);
-  $name=($_POST['name']);
-  $var=($_POST['var']);
-  $pack=($_POST['pack']);
-  $uni=($_POST['uni']);
-  $value=($_POST['value']);
-  mysql_query("insert into material_tbl values('".$id."','".$cat."','".$name."','".$var."','".$pack."','".$uni."','$value')");
-if (mysql_affected_rows() != 0)
-{
-?>
-  <div class="container">
-  <div class="alert alert-info">
-    <strong>Success!</strong>
-      </div>
-<?php
-}
-}
-include("../database/dbsad.php");
 
-?>
 <div class="panel panel-default">
 <div class="panel-body">            
   
-    <table id="table_id" class="display table-condensed table-hover table-stripe">
+    <table id="table_id" class="table table-condensed table-hover">
     <thead>
         <th>#</th>
         <th>Category</th>
@@ -275,42 +227,10 @@ include("../database/dbsad.php");
         <th>Variant</th>
         <th>Packaging</th>
         <th>Measurement</th>
-        <th>Actions</th>
+        <th></th>
+        <th></th>
     </thead>
-        <tbody>
-<?php
- $content=mysql_query("select * from material_tbl");
-  $total=mysql_affected_rows();
-  for($x=0;$x<=$total-1;$x++)
-  { 
- $no = $x + 1;
- $row=mysql_fetch_array($content);
- $id=$row['material_id'];
- $category=$row['category'];
- $name=$row['brand_name'];
- $variant=$row['variant'];
- $packaging=$row['packaging'];
- $unit=$row['unit'];
- $value=$row['value'];
-?>
-<tr>
-<td><?php echo $no; ?></td>
-<td><?php echo $category; ?></td>
-<td><?php echo $name; ?></td>
-<td><?php echo $variant; ?></td>
-<td><?php echo $packaging; ?></td>
-<td><?php echo "$value $unit"; ?></td>
-<td>
-<form method="post">
-    <input type="submit" class="btn btn-success" name="btnEdit" value="Edit">
-    <input type="submit" class="btn btn-danger" name="btnDelete" value="Delete">
-</form>
-     </td>
-            </tr>
-        <?php 
-   }?>
-        </tbody>
-        
+    
         
     </table>
       </div>
@@ -319,6 +239,113 @@ include("../database/dbsad.php");
 
 <script type="text/javascript">
 
+var table_main = $('#table_id').dataTable();
+
+
+
+populate_table_main();
+
+function populate_table_main(){ 
+  //ajax now
+  $.ajax ({
+    type: "POST",
+    url: "populate_table_main.php",
+    dataType: 'json',      
+    cache: false,
+    success: function(s)
+    {
+      table_main.fnClearTable();     
+
+      for(var i = 0; i < s.length; i++) 
+      { 
+        table_main.fnAddData
+        ([
+          i+1,s[i][1],s[i][2],s[i][3],s[i][4],s[i][5],
+          '<button onclick="table_row_update(this.value)" value="'+s[i][0]+'" class="btn btn-xs btn-success"> EDIT </button>',
+          '<button onclick="table_row_delete(this.value)" value="'+s[i][0]+'" class="btn btn-xs btn-danger"> DELETE </button>',
+        ],false); 
+        table_main.fnDraw();
+
+      }       
+    }  
+  }); 
+  //ajax end  
+} 
+
+function table_row_update(id){
+  $('#btnSave').val(id);
+  //ajax now
+  $.ajax ({
+    type: "POST",
+    url: "fetch.php",
+    data: 'id='+id,
+    dataType: 'json',      
+    cache: false,
+    success: function(s){    
+      $('#cate').val(s[0][1]);
+      $('#name').val(s[0][2]);
+      $('#var').val(s[0][3]);
+      $('#pack').val(s[0][4]);
+      $('#uni').val(s[0][5]);
+      $('#value').val(s[0][6]);
+      $('#myModal').modal('show');
+    }  
+  }); 
+  //ajax end
+
+}
+
+
+function save(mode){
+  if(ivalidate()==false){}
+  else{
+
+  var cat = $('#cate').val();
+  var name = $('#name').val();
+  var variant = $('#var').val();
+  var pack = $('#pack').val();
+  var unit = $('#uni').val();
+  var value = $('#value').val();
+  var dataString = 'cat='+cat+'&name='+name+'&variant='+variant+'&pack='+pack+'&unit='+unit+'&value='+value;
+
+  if(mode=='create'){ // will SAVE
+      //ajax now
+      $.ajax ({
+        type: "POST",
+        url: "create.php",
+        data: dataString,
+        dataType: 'json',      
+        cache: false,
+        success: function(s){    
+          populate_table_main();
+          reset();          
+          $('#myModal').modal('hide');
+          alert('Saved');
+        }  
+      }); 
+      //ajax end  
+  }
+  else{ // will UPDATE
+      //ajax now
+      $.ajax ({
+        type: "POST",
+        url: "update.php",
+        data: dataString+'&id='+$('#btnSave').val(),
+        dataType: 'json',      
+        cache: false,
+        success: function(s){    
+          populate_table_main();
+          reset();          
+          $('#myModal').modal('hide');
+          alert('SUCCESS: Update');
+        }  
+      }); 
+      //ajax end  
+  }
+
+
+  }
+}
 
 function ivalidate(){
 
@@ -374,6 +401,14 @@ function ivalidate(){
   return truth_value;
 }
 
-
+function reset(){
+  $('#btnSave').val('create');
+  $('#cate').val('none');
+  $('#name').val('');
+  $('#var').val('none');
+  $('#pack').val('none');
+  $('#uni').val('none');
+  $('#value').val('');
+}
 
 </script>

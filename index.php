@@ -3,7 +3,7 @@ session_start();
 
 if((!$_SESSION['txtuser'])&&(!$_SESSION['txtpw']))
 {
-header("Location: login.php");
+header("Location: log/login.php");
 }
 ?>
 
