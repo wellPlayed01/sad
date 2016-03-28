@@ -92,8 +92,10 @@ table.cell( {focused:true} ).data();</script>
     
     <h5 style="margin-left:1250px;"><a href="logout.php">Logout here!</a></h5>
         <div class="panel panel-info" style="margin-left:100px;margin-right:100px;margin-top:75px;">
-            <div class="panel-body" style="background:lavender;"><br><h1 style="text-align:center;font-size:50px;">Welcome Admin <?php echo $_SESSION['txtuser']; ?>!</h1><br><br>
+            <div class="panel-body" style="background:lavender;"><br><h1 id="message" style="text-align:center;font-size:50px;">Welcome Admin <?php echo $_SESSION['txtuser']; ?>!</h1><br><br>
 </div>
     </div>
     
 </body>
+    
+    

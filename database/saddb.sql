@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.12
+-- version 3.5.2.2
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 12, 2016 at 12:28 PM
--- Server version: 5.6.16
--- PHP Version: 5.5.11
+-- Generation Time: Mar 28, 2016 at 08:45 AM
+-- Server version: 5.5.27
+-- PHP Version: 5.4.7
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -43,7 +43,9 @@ INSERT INTO `category_tbl` (`cat_id`, `Category`, `Description`) VALUES
 ('160312-075138AM', 'Hair Color', 'Hair'),
 ('160312-075140AM', '', ''),
 ('160312-075540AM', 'kahsk', 'hhj'),
-('160312-075546AM', 'adjjakl', 'jkljk');
+('160312-075546AM', 'adjjakl', 'jkljk'),
+('160328-060507AM', 'Shampoo', 'Hair Mousturizer'),
+('160328-060527AM', 'Shampoo', 'Hair Mousturizer');
 
 -- --------------------------------------------------------
 
@@ -71,7 +73,8 @@ INSERT INTO `material_tbl` (`material_id`, `category`, `brand_name`, `variant`, 
 ('160312-090931AM', 'Hair Color', 'Haksj', 'nhjkhjk', 'bottle', 'Grams', 0),
 ('160312-090956AM', 'Conditioner', 'fffff', 'nhjkhjk', 'bottle', 'Grams', 0),
 ('160312-091221AM', 'Shampoo', 'kjjkl', 'nhjkhjk', 'bottle', 'Grams', 0),
-('160312-091350AM', 'Shampoo', 'yuoo', 'nhjkhjk', 'bottle', 'Grams', 13);
+('160312-091350AM', 'Shampoo', 'yuoo', 'nhjkhjk', 'bottle', 'Grams', 13),
+('160328-061701AM', 'Shampoo', 'Loreal', 'Loreal', 'Tube', 'Millimeter', 500);
 
 -- --------------------------------------------------------
 
@@ -91,7 +94,8 @@ CREATE TABLE IF NOT EXISTS `packaging_tbl` (
 --
 
 INSERT INTO `packaging_tbl` (`pack_id`, `Packaging`, `Description`) VALUES
-('160312-085637AM', 'bottle', 'plastic');
+('160312-085637AM', 'bottle', 'plastic'),
+('160328-061207AM', 'Tube', 'Kahit Ano');
 
 -- --------------------------------------------------------
 
@@ -125,6 +129,10 @@ CREATE TABLE IF NOT EXISTS `service_tbl` (
 --
 
 INSERT INTO `service_tbl` (`service_id`, `service_category`, `service_name`, `service_price`) VALUES
+('160328-060819AM', '', 'name', 120),
+('160328-060833AM', '', 'name', 120),
+('160328-061940AM', '', 'name', 40),
+('160328-062223AM', '', 'name', 500),
 ('789178', 'Hair', 'Hair Coloring', 400);
 
 -- --------------------------------------------------------
@@ -145,7 +153,35 @@ CREATE TABLE IF NOT EXISTS `unit_tbl` (
 --
 
 INSERT INTO `unit_tbl` (`unit_id`, `Unit`, `Shortcut`) VALUES
-('160312-085704AM', 'Grams', 'g');
+('160312-085704AM', 'Grams', 'g'),
+('160328-061039AM', 'Millimeter', 'ml');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_tbl`
+--
+
+CREATE TABLE IF NOT EXISTS `user_tbl` (
+  `userid` varchar(30) NOT NULL,
+  `firstname` varchar(50) NOT NULL,
+  `lastname` varchar(50) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `answer` varchar(50) NOT NULL,
+  PRIMARY KEY (`userid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user_tbl`
+--
+
+INSERT INTO `user_tbl` (`userid`, `firstname`, `lastname`, `username`, `password`, `answer`) VALUES
+('160324-043800AM', 'Hanah', 'Arcallana', 'hanah', 'hanah', 'none'),
+('160326-015659AM', 'Angelo', 'Chua', 'angelo', 'haha', 'yeah'),
+('160327-000945AM', 'Hanah Nina', 'Amigo', 'black_cat', 'hanah', 'none'),
+('160327-004050AM', 'Angelo Bernard', 'chua', 'chua', 'chua', 'yeah'),
+('160327-204939PM', 'Nin', 'Ami', 'forevs', 'qwerty', 'kat');
 
 -- --------------------------------------------------------
 
@@ -165,7 +201,9 @@ CREATE TABLE IF NOT EXISTS `variant_tbl` (
 --
 
 INSERT INTO `variant_tbl` (`var_id`, `Variant`, `Description`) VALUES
-('160312-085552AM', 'nhjkhjk', 'hjh');
+('160312-085552AM', 'nhjkhjk', 'hjh'),
+('160328-061430AM', 'Loreal', 'Shampoo'),
+('160328-061435AM', 'Loreal', 'Shampoo');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
