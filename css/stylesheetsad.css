@@ -1,0 +1,25 @@
+body {
+	background-color: beige;
+	margin: 0px;
+	padding: 0px;
+}
+#topcontent {
+	margin-left: 10px;
+	border: medium solid #FF0000;
+	border-radius: 10px;
+    text-align: center;
+}
+h1 {
+	font-family: "Times New Roman", Times, serif;
+	font-size: xx-large;
+	color: #FF0000;
+}
+#bodycontent {
+    margin: 20px;
+    border: 1px solid black;
+    text-align: center;
+    border-radius: 20px;
+}
+.error {
+    color: darkred;
+}
