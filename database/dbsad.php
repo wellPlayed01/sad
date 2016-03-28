@@ -1,5 +1,5 @@
         <?php
-if($connect=@mysql_connect("localhost","root","starwars"))
+if($connect=@mysql_connect("localhost","root"))
 echo "<br>";
 else
  die ("<br/>".@mysql_error());
