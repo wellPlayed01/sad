@@ -59,7 +59,7 @@ table.cell( {focused:true} ).data();</script>
       <?php include('../include/navigation.php'); ?>
 
     
-    <h5 style="margin-left:1250px;"><a href="log/logout.php">Logout here!</a></h5>
+    <h5 style="margin-left:1250px;"><a href="../plugins/log/logout.php">Logout here!</a></h5>
 
     <form method="post">
   <div class="btn-group" style="margin-left:475px;">

@@ -37,7 +37,9 @@ header("Location: login.php");
     <script src="../plugins/js/jquery-1.11.1.min.js"></script>
     <script src="../plugins/js/bootstrap.min.js"></script>
       <script src="../plugins/js/jquery.js"></script>
- 
+
+
+
       <script type="text/javascript" charset="utf8" src="../plugins/datatables/jquery.dataTables.js"></script>
       <script> $(document).ready(function(){ $('#table_id').DataTable();});</script>
       <script> $('#table_id').DataTable( {select: true } );</script>
@@ -101,71 +103,103 @@ table.cell( {focused:true} ).data();</script>
           <h4 class="modal-title">Add New Materials</h4>
         </div>
         <div class="modal-body">
-        <form method="post" >
-        <p>Category:</p> 
-    <select class="form-control" name="cate">
-<?php              
-    include("database/dbsad.php");
- echo "<option value='' selected disabled>Select Category...</option>";
- $content=mysql_query("select * from category_tbl");
-$total=mysql_affected_rows();
-for($x=0;$x<=$total-1;$x++)
-{
-?>
-    <?php $row = mysql_fetch_array($content);
-    $cat=$row['Category'];
- echo "<option>$cat</option>";
-}?>
-        </select>
-<p>Brand name: </p> 
-        <input type="text" class="form-control" name="name" placeholder="Brand Name">
-<p>Variant: </p>
-    <select class="form-control" name="var">
-<?php
-    include("database/dbsad.php");
- echo "<option value='' selected disabled>Select Variant...</option>";
- $content=mysql_query("select * from variant_tbl");
- $total=mysql_affected_rows();
-for($x=0;$x<=$total-1;$x++)
-{
-?>
-<?php $row = mysql_fetch_array($content);
- $variant=$row['Variant'];
- echo "<option>$variant</option>";
- }?>
-        </select>
-<p>Packaging: </p>
-    <select class="form-control" name="pack">
-<?php              
-    include("database/dbsad.php");
-  echo "<option value='' selected disabled>Select Packaging...</option>";
-$content=mysql_query("select * from packaging_tbl");
- $total=mysql_affected_rows();
-for($x=0;$x<=$total-1;$x++)
-{
-?>
-    <?php $row = mysql_fetch_array($content);
-    $packs=$row['Packaging'];
- echo "<option>$packs</option>";
- }?>
-        </select>
-<p>Unit of Measurement: </p>
-    <select class="form-control" name="uni">
-<?php              
-    include("database/dbsad.php");
- echo "<option value='' selected disabled>Select Unit of Measurement...</option>";
- $content=mysql_query("select * from unit_tbl");
-$total=mysql_affected_rows();
-for($x=0;$x<=$total-1;$x++)
-{
-?>
-    <?php $row = mysql_fetch_array($content);
-    $un=$row['Unit'];
- echo "<option>$un</option>";
- }?>
-        </select>
-<p>Value of Unit: </p><input type="number" min="0.01" step="0.01" class="form-control" name="value" placeholder="Value of unit">
-<input type="submit" class="btn btn-info" name="btnSave" style="margin-top:20px;margin-left:250px;" value="Save">
+
+        <form method="post" onsubmit="return ivalidate()" ><!--form-->
+
+
+        <div id="cate_div">
+
+          <p>Category:</p> 
+          <select class="form-control" id="cate" name="cate">
+            <?php              
+                include("../database/dbsad.php");
+             echo "<option value='none' selected >Select Category...</option>";
+             $content=mysql_query("select * from category_tbl");
+            $total=mysql_affected_rows();
+            for($x=0;$x<=$total-1;$x++)
+            {
+            ?>
+                <?php $row = mysql_fetch_array($content);
+                $cat=$row['Category'];
+             echo "<option>$cat</option>";
+            }?>
+          </select>
+
+
+        </div>
+
+
+        <div id="name_div">
+
+        <p>Brand name: </p> 
+                <input type="text" class="form-control" id="name" name="name" placeholder="Brand Name">
+        </div>
+
+        <div id="var_div"
+        
+        <p>Variant: </p>
+            <select class="form-control" id="var" name="var">
+          <?php
+              include("database/dbsad.php");
+           echo "<option value='none' selected>Select Variant...</option>";
+           $content=mysql_query("select * from variant_tbl");
+           $total=mysql_affected_rows();
+          for($x=0;$x<=$total-1;$x++)
+          {
+          ?>
+          <?php $row = mysql_fetch_array($content);
+           $variant=$row['Variant'];
+           echo "<option>$variant</option>";
+           }?>
+                  </select>
+        </div>
+
+        <div id="pack_div"
+
+        <p>Packaging: </p>
+            <select class="form-control" id="pack" name="pack">
+        <?php              
+            include("database/dbsad.php");
+          echo "<option value='none' selected>Select Packaging...</option>";
+        $content=mysql_query("select * from packaging_tbl");
+         $total=mysql_affected_rows();
+        for($x=0;$x<=$total-1;$x++)
+        {
+        ?>
+            <?php $row = mysql_fetch_array($content);
+            $packs=$row['Packaging'];
+         echo "<option>$packs</option>";
+         }?>
+                </select>
+        </div>
+
+        <div id="uni_div">
+
+      <p>Unit of Measurement: </p>
+          <select class="form-control" id="uni" name="uni">
+      <?php              
+          include("database/dbsad.php");
+       echo "<option value='none' selected>Select Unit of Measurement...</option>";
+       $content=mysql_query("select * from unit_tbl");
+      $total=mysql_affected_rows();
+      for($x=0;$x<=$total-1;$x++)
+      {
+      ?>
+          <?php $row = mysql_fetch_array($content);
+          $un=$row['Unit'];
+       echo "<option>$un</option>";
+       }?>
+              </select>
+
+          </div>
+
+          <div id="value_div">
+
+          <p>Value of Unit: </p><input type="number" min="0.01" step="0.01" class="form-control" id="value" name="value" placeholder="Value of unit">
+
+         </div>
+
+<input type="submit" class="btn btn-info" id="btnSave"  name="btnSave" style="margin-top:20px;margin-left:250px;" value="Save">
             </form>    
           </div>
         <div class="modal-footer">
@@ -261,3 +295,64 @@ include("database/dbsad.php");
       </div>
     </div>
 </body>
+
+<script type="text/javascript">
+
+
+function ivalidate(){
+
+  var truth_value = true;
+
+  if($('#cate').val()=='none'){
+    $('#cate_div').addClass('has-error');
+    truth_value = false;
+  }
+  else
+    $('#cate_div').removeClass('has-error');
+
+  if($('#name').val()==''){
+    $('#name_div').addClass('has-error');
+    truth_value = false;
+  }
+  else
+    $('#name_div').removeClass('has-error');  
+
+
+  if($('#var').val()=='none'){
+    $('#var_div').addClass('has-error');
+    truth_value = false;
+  }
+  else
+    $('#var_div').removeClass('has-error');  
+
+  if($('#pack').val()=='none'){
+    $('#pack_div').addClass('has-error');
+    truth_value = false;
+  }
+  else
+    $('#pack_div').removeClass('has-error');  
+
+if($('#uni').val()=='none'){
+    $('#uni_div').addClass('has-error');
+    truth_value = false;
+  }
+  else
+    $('#uni_div').removeClass('has-error');  
+
+  if($('#value').val()==''){
+    $('#value_div').addClass('has-error');
+    truth_value = false;
+  }
+  else if($('#value').val()>999999){
+    $('#value_div').addClass('has-error');
+    truth_value = false;
+  }  
+  else
+    $('#value_div').removeClass('has-error');  
+
+  return truth_value;
+
+}
+
+
+</script>
