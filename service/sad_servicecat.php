@@ -30,38 +30,9 @@ table.cell( {focused:true} ).data();</script>
   </head>
 <body>
     <div class="topcontent">
-    <img src="../plugins/imgs/Salon360.jpg" alt="Cover" width="100%" height="250">
-        </div>
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <ul class="nav navbar-nav">
-        
-        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Transactions <span class="caret"></span></a>             <ul class="dropdown-menu">
-      <li><a href="transactions/service_layout.php">Services</a></li>
-      <li><a href="transactions/purchase_layout.php">Purchase Order</a></li>
-      <li><a href="transactions/receive_layout.php">Receive Delivery</a></li>
-          </ul>
-        </li>
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Reports <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-              <li><a href="#">Inventory Report</a></li>
-              <li><a href="#">Sales Report</a></li>
-         </ul>
-      </li>
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Utilities <span class="caret"></span></a>
-    <ul class="dropdown-menu">
-        <li><a href="#">User Account</a></li>
-        <li><a href="#">Audit Trail</a></li>
-        </ul>
-        </li>
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="sad_maintenance.php">Maintenance <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-      <li><a href="materials/sad_materials.php">Materials</a></li>
-      <li><a href="service/sad_service.php">Services</a></li>
-      <li><a href="promo/sad_promo.php">Seasonal Promo</a></li>
-                </ul>
-        </li>
-    </ul>
+
+    <?php include('../include/navigation.php'); ?>
+
     <?php
 error_reporting(E_ALL&~E_NOTICE);
 if($connect=@mysql_connect("localhost","root"))
@@ -73,7 +44,6 @@ if($connect=@mysql_connect("localhost","root"))
       
 ?>
  
-    </nav>
   </div>
     <form method="post" action="servicecat_save.php">
         <button type="submit" class="btn btn-info btn-lg" name="btnnew" style="align:center;margin-left:600px;margin-bottom:10px;">Add new record</button>
